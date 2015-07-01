@@ -5,7 +5,11 @@ function Foo(name){
 }
 
 Foo.prototype = {
-    doSomething: function(message){
-        return (this.name + ":" + message).toUpperCase(); 
+    doSomething: function(message, cb){
+        var that = this;
+        setTimeout(function(){
+            var result =(that.name + ":" + message).toUpperCase(); 
+            cb(result); 
+        }, 500);
     }
 };

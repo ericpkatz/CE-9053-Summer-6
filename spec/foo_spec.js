@@ -16,9 +16,13 @@ describe("Foo", function(){
     describe("doSomething", function(){
        describe("name is bizz and message is bar", function(){
            var result; 
-           beforeEach(function(){
+           beforeEach(function(done){
                var foo = new Foo("bizz");
-               result = foo.doSomething("bar");
+               foo.doSomething("bar", function(_result){
+                  console.log(_result); 
+                  result = _result;
+                  done(); 
+               });
            });
             it("result is BIZZ:BAR", function(){
                 expect(result).toEqual("BIZZ:BAR");
