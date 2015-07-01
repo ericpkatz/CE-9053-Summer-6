@@ -13,4 +13,16 @@ describe("Foo", function(){
             expect(foo.name).toEqual("bar");
         });
     });
+    describe("doSomething", function(){
+       describe("name is bizz and message is bar", function(){
+           var result; 
+           beforeEach(function(){
+               var foo = new Foo("bizz");
+               result = foo.doSomething("bar");
+           });
+            it("result is BIZZ:BAR", function(){
+                expect(result).toEqual("BIZZ:BAR");
+            }); 
+       });
+    });
 });
