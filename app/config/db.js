@@ -17,7 +17,10 @@ function connect(cb){
     return dfd.promise;
 }
 
-function disconnect(cb){
+function disconnect(){
     var dfd = Q.defer();
+    mongoose.disconnect(function(){
+       dfd.resolve(); 
+    });
     return dfd.promise;
 }
