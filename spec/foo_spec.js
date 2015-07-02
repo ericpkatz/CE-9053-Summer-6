@@ -18,7 +18,8 @@ describe("Foo", function(){
            var result; 
            beforeEach(function(done){
                var foo = new Foo("bizz");
-               foo.doSomething("bar", function(_error, _result){
+               foo.doSomething("bar")
+                .then(function(_result){
                   console.log(_result); 
                   result = _result;
                   done(); 
@@ -32,8 +33,8 @@ describe("Foo", function(){
            var error; 
            beforeEach(function(done){
                var foo = new Foo("bizz");
-               foo.doSomething("bad", function(_error, _result){
-                  console.log(_result); 
+               foo.doSomething("bad")
+                .catch(function(_error){
                   error= _error;
                   done(); 
                });

@@ -1,3 +1,4 @@
+var Q = require("q");
 module.exports = Foo;
 
 function Foo(name){
@@ -5,14 +6,16 @@ function Foo(name){
 }
 
 Foo.prototype = {
-    doSomething: function(message, cb){
+    doSomething: function(message){
+        var dfd = Q.defer();
         var that = this;
         setTimeout(function(){
             var result =(that.name + ":" + message).toUpperCase(); 
             if(message == "bad")
-                cb("BAD is BAD")
+                dfd.reject("BAD is BAD")
             else
-                cb(null, result); 
+                dfd.resolve(result); 
         }, 500);
+        return dfd.promise;
     }
 };
