@@ -24,6 +24,7 @@ describe("Thing", function(){
             })
             .then(function(_scissor){
                 console.log(_scissor);
+                console.log(scissors._id);
                 done();
             });
     });
@@ -52,5 +53,35 @@ describe("Thing", function(){
         it("the first one is Paper", function(){
             expect(things[0].name).toEqual("Paper");
         });
+    });
+    describe("findById", function(){
+       describe("with the _id from rock", function(){
+           var name;
+           beforeEach(function(done){
+               Thing.findById(rock._id)
+                    .then(function(_rock){
+                        name = _rock.name;
+                        done();
+                    });
+           });
+           it("returns the rock", function(){
+              expect(name).toEqual("Rock"); 
+           });
+       }); 
+    });
+    describe("findOne", function(){
+       describe("with name of Rock", function(){
+           var name;
+           beforeEach(function(done){
+               Thing.findOne({ name: 'Rock'})
+                    .then(function(_rock){
+                        name = _rock.name;
+                        done();
+                    });
+           });
+           it("returns the rock", function(){
+              expect(name).toEqual("Rock"); 
+           });
+       }); 
     });
 });
