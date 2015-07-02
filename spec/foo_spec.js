@@ -18,7 +18,7 @@ describe("Foo", function(){
            var result; 
            beforeEach(function(done){
                var foo = new Foo("bizz");
-               foo.doSomething("bar", function(_result){
+               foo.doSomething("bar", function(_error, _result){
                   console.log(_result); 
                   result = _result;
                   done(); 
@@ -26,6 +26,20 @@ describe("Foo", function(){
            });
             it("result is BIZZ:BAR", function(){
                 expect(result).toEqual("BIZZ:BAR");
+            }); 
+       });
+       describe("name is bizz and message is bad", function(){
+           var error; 
+           beforeEach(function(done){
+               var foo = new Foo("bizz");
+               foo.doSomething("bad", function(_error, _result){
+                  console.log(_result); 
+                  error= _error;
+                  done(); 
+               });
+           });
+            it("error is BAD is BAD", function(){
+                expect(error).toEqual("BAD is BAD");
             }); 
        });
     });

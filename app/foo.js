@@ -9,7 +9,10 @@ Foo.prototype = {
         var that = this;
         setTimeout(function(){
             var result =(that.name + ":" + message).toUpperCase(); 
-            cb(result); 
+            if(message == "bad")
+                cb("BAD is BAD")
+            else
+                cb(null, result); 
         }, 500);
     }
 };
