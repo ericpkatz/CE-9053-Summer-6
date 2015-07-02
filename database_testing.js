@@ -30,9 +30,9 @@ db.connect()
         return Thing.findById(things[0]._id);
     })
     .then(function(thing){
-        console.log("here is the first thing".underline)
+        console.log("here is the first thing".underline);
         console.log(thing);
-        return db.disconnect()
+        return db.disconnect();
     })
     .then(function(){
         console.log("connection is closed".green);
